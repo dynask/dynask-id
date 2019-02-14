@@ -14,7 +14,7 @@ import com.dynask.id.Id;
  * 加起来刚好64位，为一个Long型。<br>
  * SnowFlake的优点是，整体上按照时间自增排序，并且整个分布式系统内不会产生ID碰撞(由数据中心ID和机器ID作区分)，并且效率较高，经测试，SnowFlake每秒能够产生26万ID左右。
  */
-public class IdWorker {
+public class Snowflake {
 
     /**
      * 开始时间截 (2018-01-01)
@@ -86,13 +86,13 @@ public class IdWorker {
      */
     private long lastTimestamp = -1L;
 
-    public IdWorker(){
-        IdConfig idConfig = new IdConfig();
-        initIdWorker(idConfig.getWorkerId(), idConfig.getDataCenterId(), idConfig.getStartTime(), idConfig.getWorkerIdBits(), idConfig.getDataCenterIdBits(), idConfig.getSequenceBits());
+    public Snowflake(){
+        SnowflakeConfig snowflakeConfig = new SnowflakeConfig();
+        initIdWorker(snowflakeConfig.getWorkerId(), snowflakeConfig.getDataCenterId(), snowflakeConfig.getStartTime(), snowflakeConfig.getWorkerIdBits(), snowflakeConfig.getDataCenterIdBits(), snowflakeConfig.getSequenceBits());
     }
 
-    public IdWorker(IdConfig idConfig){
-        initIdWorker(idConfig.getWorkerId(), idConfig.getDataCenterId(), idConfig.getStartTime(), idConfig.getWorkerIdBits(), idConfig.getDataCenterIdBits(), idConfig.getSequenceBits());
+    public Snowflake(SnowflakeConfig snowflakeConfig){
+        initIdWorker(snowflakeConfig.getWorkerId(), snowflakeConfig.getDataCenterId(), snowflakeConfig.getStartTime(), snowflakeConfig.getWorkerIdBits(), snowflakeConfig.getDataCenterIdBits(), snowflakeConfig.getSequenceBits());
     }
 
     private void initIdWorker(long workerId, long dataCenterId, long startTime, long workerIdBits, long dataCenterIdBits, long sequenceBits) {
@@ -245,8 +245,8 @@ public class IdWorker {
      * 测试
      */
     public static void main(String[] args) {
-         IdWorker idWorker = new IdWorker();
-        long id = idWorker.nextId();
+         Snowflake snowflake = new Snowflake();
+        long id = snowflake.nextId();
         System.out.println("id = " + id);
 //        SnowflakeWorker idWorker = new SnowflakeWorker(1, 1, 1514736000000L, 7, 6, 10);
 //        for (int i = 0; i < 1000; i++) {
@@ -255,7 +255,7 @@ public class IdWorker {
 //        }
 
         // System.out.println(Long.valueOf(StringToA("1ZZZZ1ZZZ")));
-        System.out.println(idWorker.getId(id));
+        System.out.println(snowflake.getId(id));
         long a = 5l;
         long b = 7l;
         System.out.println(a&b);

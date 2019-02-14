@@ -5,23 +5,23 @@ import com.dynask.id.Id;
 
 public class SnowflakeWorker implements IdService {
 
-    private IdWorker idWorker;
+    private Snowflake snowflake;
 
     public SnowflakeWorker(){
-        idWorker = new IdWorker();
+        snowflake = new Snowflake();
     }
 
-    public SnowflakeWorker(IdConfig idConfig){
-        idWorker = new IdWorker(idConfig);
+    public SnowflakeWorker(SnowflakeConfig snowflakeConfig){
+        snowflake = new Snowflake(snowflakeConfig);
     }
 
     @Override
     public long getId() {
-        return idWorker.nextId();
+        return snowflake.nextId();
     }
 
     @Override
     public Id getId(long id) {
-        return idWorker.getId(id);
+        return snowflake.getId(id);
     }
 }

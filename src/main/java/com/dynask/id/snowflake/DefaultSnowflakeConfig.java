@@ -3,7 +3,7 @@ package com.dynask.id.snowflake;
 /**
  * 雪花算法的默认配置
  */
-public interface DefaultIdConfig {
+public interface DefaultSnowflakeConfig {
 
     long workerId = 0L;
     long dataCenterId = 0L;

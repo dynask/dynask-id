@@ -6,7 +6,7 @@ import lombok.Data;
  * 雪花算法的基本配置
  */
 @Data
-public class IdConfig {
+public class SnowflakeConfig {
 
     private long workerId;
     private long dataCenterId;
@@ -15,15 +15,15 @@ public class IdConfig {
     private long dataCenterIdBits;
     private long sequenceBits;
 
-    public IdConfig(){
-        this(DefaultIdConfig.workerId, DefaultIdConfig.dataCenterId);
+    public SnowflakeConfig(){
+        this(DefaultSnowflakeConfig.workerId, DefaultSnowflakeConfig.dataCenterId);
     }
 
-    public IdConfig(long workerId, long dataCenterId){
-        this(workerId, dataCenterId, DefaultIdConfig.startTime, DefaultIdConfig.workerIdBits, DefaultIdConfig.dataCenterIdBits, DefaultIdConfig.sequenceBits);
+    public SnowflakeConfig(long workerId, long dataCenterId){
+        this(workerId, dataCenterId, DefaultSnowflakeConfig.startTime, DefaultSnowflakeConfig.workerIdBits, DefaultSnowflakeConfig.dataCenterIdBits, DefaultSnowflakeConfig.sequenceBits);
     }
 
-    public IdConfig(long workerId, long dataCenterId, long startTime, long workerIdBits, long dataCenterIdBits, long sequenceBits){
+    public SnowflakeConfig(long workerId, long dataCenterId, long startTime, long workerIdBits, long dataCenterIdBits, long sequenceBits){
         this.workerId = workerId;
         this.dataCenterId = dataCenterId;
         this.startTime = startTime;
