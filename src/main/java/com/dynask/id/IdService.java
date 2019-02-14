@@ -5,4 +5,5 @@ public interface IdService {
     long getId();
 
     Id getId(long id);
+
 }
