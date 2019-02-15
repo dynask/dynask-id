@@ -1,6 +1,6 @@
 package com.dynask.id;
 
-public interface IdService {
+public interface IdProvider {
 
     long getId();
 

@@ -1,9 +1,9 @@
 package com.dynask.id.snowflake;
 
-import com.dynask.id.IdService;
+import com.dynask.id.IdProvider;
 import com.dynask.id.Id;
 
-public class SnowflakeWorker implements IdService {
+public class SnowflakeWorker implements IdProvider {
 
     private Snowflake snowflake;
 
